@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mb-10">
         <Navbar/>
         <main>
             <router-view :key="$route.path"></router-view>

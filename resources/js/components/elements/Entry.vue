@@ -22,6 +22,9 @@
 	        		<div class="text-sm ml-2">
 	        			<a @click="toggleComments" class="text-blue-500 cursor-pointer">{{ commentsExpanded ? 'Hide' : 'Expand' }}</a>
 	      			</div>
+	      			<div class="text-sm ml-2">
+	        			<a @click="replyBoxVisible = true" class="text-blue-500 cursor-pointer">Reply</a>
+	      			</div>
 	    		</div>
 	  		</div>
 		</div>
@@ -38,16 +41,18 @@
 			>
   				<Comment v-for="comment in comments" v-bind:key="comment" :id="comment"/>
   			</transition-group>
+  			<ReplyBox v-if="replyBoxVisible" :parent_id="this.entry_id"/>
   		</div>
 	</div>
 </template>
 
 <script>
 	import Comment from './Comment.vue'
+	import ReplyBox from './ReplyBox.vue'
 	
 	export default {
 		name: 'Entry',
-		components: {Comment},
+		components: {Comment, ReplyBox},
 		props: ['entry_id'],
 		data: function() {
 			return {
@@ -63,7 +68,8 @@
 					'comments': []
 				},
 				'comments': [],
-				'commentsExpanded': false
+				'commentsExpanded': false,
+				'replyBoxVisible': false
 			}
 		},
 		methods: {

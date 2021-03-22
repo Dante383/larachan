@@ -27,7 +27,9 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "dropzone": "^5.8.1",
         "vue-axios": "^3.2.4",
+        "vue-quill-editor": "^3.0.6",
         "vue-router": "^3.5.1",
         "vue3-click-away": "^1.1.0"
     }
