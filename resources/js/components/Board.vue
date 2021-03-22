@@ -5,12 +5,18 @@
                 /{{ board.href }}/ - {{ board.name }}
             </div>
         </div>
+        <div class="container mx-auto">
+            <Entry/>
+        </div>
     </div>
 </template>
 
 <script>
+    import Entry from './elements/Entry.vue'
+
     export default {
         props: ['board_href'],
+        components: {Entry},
         data: function() {
             return {
                 'board': {}

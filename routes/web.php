@@ -38,6 +38,33 @@ Route::prefix('api')->group(function(){
 			return array("href" => "dDa", "name" => "testaa");
 		}
 	});
+
+	Route::get('/entry/{entry_id}', function ($entry_id) {
+		return array(
+			"id" => 18546313,
+			"created_at" => "03/22/21(Mon)19:57:13",
+			"title" => "Topic topic",
+			"body" => "mmmm",
+			"image" => array(
+				"thumbnail" => "https://i.4cdn.org/b/161643712s.jpg",
+				"fullres" => "https://i.4cdn.org/b/161642712.png"
+			),
+			"comments" => [7312, 5482, 4582, 54825]
+		);
+	});
+
+	Route::get('/comment/{comment_id}', function ($entry_id) {
+		return array(
+			"id" => 7312,
+			"created_at" => "03/22/21(Mon)19:57:13",
+			"body" => "this is an example comment",
+			"image" => array(
+				"thumbnail" => "https://i.4cdn.org/b/1616439222s.jpg",
+				"fullres" => "https://i.4cdn.org/b/1616959222.jpg"
+			),
+			"parent_id" => 18546313
+		);
+	});
 });
 
 Route::get('/{any}', function(){
