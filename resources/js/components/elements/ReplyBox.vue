@@ -41,7 +41,7 @@
         content: '',
         editorOptions: {
           placeholder: 'Enter your comment here',
-          formats: ['bold', 'italic', 'strike', 'underline']
+          formats: ['italic', 'bold']
         }
       }
     },

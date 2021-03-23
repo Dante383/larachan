@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Board;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,28 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('api')->group(function(){
 	Route::get('/boards', function() {
-		return array(
-			array(
-				"href" => "b",
-				"name" => "Random"
-			),
-			array(
-				"href" => "it",
-				"name" => "Technology"
-			),
-			array(
-				"href" => "sp",
-				"name" => "Sports"
-			)
-		);
+		return Board::where('listed', true)->get();
 	});
 
 	Route::get('/board/{board_href}', function ($board_href) {
-		if ($board_href == 'b'){
-		return array("href" => "dD", "name" => "test");}
-		else {
-			return array("href" => "dDa", "name" => "testaa");
-		}
+		return Board::where('href', $board_href)->first();
 	});
 
 	Route::get('/entry/{entry_id}', function ($entry_id) {
@@ -46,8 +30,8 @@ Route::prefix('api')->group(function(){
 			"title" => "Topic topic",
 			"body" => "mmmm",
 			"image" => array(
-				"thumbnail" => "https://i.4cdn.org/b/161643712s.jpg",
-				"fullres" => "https://i.4cdn.org/b/161642712.png"
+				"thumbnail" => "https://i.4cdn.org/b/16166182712s.jpg",
+				"fullres" => "https://i.4cdn.org/b/16164382712.png"
 			),
 			"comments" => [7312, 5482, 4582, 54825]
 		);
@@ -59,8 +43,8 @@ Route::prefix('api')->group(function(){
 			"created_at" => "03/22/21(Mon)19:57:13",
 			"body" => "this is an example comment",
 			"image" => array(
-				"thumbnail" => "https://i.4cdn.org/b/1616439222s.jpg",
-				"fullres" => "https://i.4cdn.org/b/1616959222.jpg"
+				"thumbnail" => "https://i.4cdn.org/b/16164359222s.jpg",
+				"fullres" => "https://i.4cdn.org/b/16164359222.jpg"
 			),
 			"parent_id" => 18546313
 		);
