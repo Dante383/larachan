@@ -1,5 +1,5 @@
 <template>
-	<div class="w-50 lg:flex display-none mt-2">
+	<div class="w-50 lg:flex mt-2">
   		<div class="h-64 lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden bg-white">
         <div id="dropzone" class="flex w-100 h-100 inline-block border border-blue-400 border-r-0 cursor-pointer hover:bg-blue-400 hover:text-white">
           <label class="w-64 flex flex-col items-center px-4 py-6 text-blue rounded-lg tracking-wide uppercase    mb-auto mt-auto">
