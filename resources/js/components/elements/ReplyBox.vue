@@ -19,7 +19,7 @@
             :options="editorOptions"
             />
     		</div>
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Send</button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="sendReply">Send</button>
   		</div>
 	</div>
 </template>
@@ -34,7 +34,7 @@
   import { quillEditor } from 'vue-quill-editor'
 
 	export default {
-    props: ['parent_id'],
+    props: ['entry_id'],
     components: { quillEditor },
     data: function() {
       return {
@@ -43,6 +43,18 @@
           placeholder: 'Enter your comment here',
           formats: ['italic', 'bold']
         }
+      }
+    },
+    methods: {
+      sendReply () {
+        let data = {
+          'body': this.content,
+          'entry_id': this.entry_id
+        }
+
+        this.axios.post('/api/comment', data=data).then((response) => {
+          console.log(response);
+        });
       }
     },
     mounted() {

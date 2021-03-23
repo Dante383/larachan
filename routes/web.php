@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+
 use App\Models\Board;
 use App\Models\Entry;
 use App\Models\Comment;
@@ -38,8 +40,20 @@ Route::prefix('api')->group(function(){
 		return $returnData;
 	});
 
+	Route::post('/entry', function(Request $request){
+
+	});
+
+
 	Route::get('/comment/{comment_id}', function ($comment_id) {
 		return Comment::where('id', $comment_id)->first();
+	});
+
+	Route::post('/comment', function(Request $request){
+		$comment = new Comment;
+		$comment->body = $request->input('body');
+		$comment->entry_id = $request->input('entry_id');
+		$comment->save();
 	});
 });
 

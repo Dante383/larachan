@@ -17,7 +17,7 @@
 	    		</div>
 	    		<div class="flex items-center">
 	      			<div class="text-sm">
-	        			<p class="text-black leading-none">12 replies and 2 images omitted.</p>
+	        			<p class="text-black leading-none" v-if="((this.entry.comments.length-2 > 0) && !commentsExpanded)">{{ this.entry.comments.length-2 }} replies omitted.</p>
 	        		</div>
 	        		<div class="text-sm ml-2">
 	        			<a @click="toggleComments" class="text-blue-500 cursor-pointer">{{ commentsExpanded ? 'Hide' : 'Expand' }}</a>
@@ -30,7 +30,6 @@
 		</div>
 		<div class="ml-16">
 			<transition-group 
-			name="flip-list" 
 			tag="div"
 			enter-active-class="transition-all transition-fastest ease-out-quad"
 			leave-active-class="transition-all transition-faster ease-in-quad"
@@ -41,7 +40,7 @@
 			>
   				<Comment v-for="comment in comments" v-bind:key="comment.id" :comment_id="comment.id"/>
   			</transition-group>
-  			<ReplyBox v-if="replyBoxVisible" :parent_id="this.entry_id"/>
+  			<ReplyBox v-if="replyBoxVisible" :entry_id="this.entry_id"/>
   		</div>
 	</div>
 </template>
@@ -94,9 +93,3 @@
 		}
 	}
 </script>
-
-<style>
-	.flip-list-move {
-  transition: transform 1s;
-}
-</style>
