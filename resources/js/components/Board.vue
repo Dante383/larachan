@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="container mx-auto">
-            <Entry/>
+            <Entry v-for="entry in entries" v-bind:key="entry.id" :entry_id="entry.id"/>
         </div>
     </div>
 </template>
@@ -19,7 +19,8 @@
         components: {Entry},
         data: function() {
             return {
-                'board': {}
+                'board': {},
+                'entries': []
             }
         },
         mounted() {
@@ -27,6 +28,10 @@
 
             this.axios.get('/api/board/' + this.board_href).then((response) => {
                 that.board = response.data
+            });
+
+            this.axios.get('/api/entries/' + this.board_href).then((response) => {
+                that.entries = response.data
             });
         }
     }

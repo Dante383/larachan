@@ -1,8 +1,7 @@
 <template>
 	<div class="w-full lg:flex display-none mt-2">
-  		<a target="_blank" :href="comment.image.fullres"><img class="h-64 lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" 
-        :src="comment.image.thumbnail" 
-        v-if="comment.image"/></a>
+  		<a target="_blank" :href="comment.image.fullres" v-if="comment.image"><img class="h-64 lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" 
+        :src="comment.image.thumbnail"/></a>
   		<div class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
     		<div class="mb-8">
       			<p class="text-sm text-grey-dark flex items-center">
@@ -32,7 +31,7 @@
             "thumbnail": "",
             "fullres": ""
           },
-          "parent_id": ""
+          "entry_id": ""
         }
       }
     },
@@ -41,6 +40,7 @@
 
       this.axios.get('/api/comment/' + this.comment_id).then((response) => {
         that.comment = response.data;
+        console.log(that.comment);
       });
     }
   }

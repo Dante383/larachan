@@ -39,7 +39,7 @@
 			leave-class="opacity-100 scale-100"
 			leave-to-class="opacity-0 scale-70"
 			>
-  				<Comment v-for="comment in comments" v-bind:key="comment" :id="comment"/>
+  				<Comment v-for="comment in comments" v-bind:key="comment.id" :comment_id="comment.id"/>
   			</transition-group>
   			<ReplyBox v-if="replyBoxVisible" :parent_id="this.entry_id"/>
   		</div>
