@@ -10,4 +10,9 @@ class Entry extends Model
     {
     	return $this->hasMany(Comment::class);
     }
+
+    public function board ()
+	{
+		return $this->belongsTo(Board::class);
+	}
 }

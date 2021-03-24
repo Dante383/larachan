@@ -28,7 +28,11 @@ Route::prefix('api')->group(function(){
 	});
 
 	Route::get('/entries/{board_href}', function($board_href) {
-		return Board::where('href', $board_href)->first()->entries;
+		$board = Board::where('href', $board_href)->first();
+
+		$entries = Entry::where('board_id', $board->id)->orderByDesc('updated_at')->get();
+		
+		return $entries;
 	});
 
 	Route::get('/entry/{entry_id}', function ($entry_id) {
@@ -59,6 +63,10 @@ Route::prefix('api')->group(function(){
 		$comment->body = $request->input('body');
 		$comment->entry_id = $request->input('entry_id');
 		$comment->save();
+
+		$entry = $comment->entry;
+		$entry->touch();
+		$entry->save();
 
 		return $comment;
 	});

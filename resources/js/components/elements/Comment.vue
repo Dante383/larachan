@@ -6,7 +6,7 @@
     		<div class="mb-8">
       			<p class="text-sm text-grey-dark flex items-center">
 			    	  <span class="text-green-700 font-semibold">Anonymous</span>
-			        <span class="ml-1 block">{{ comment.created_at }}</span>
+			        <span class="ml-1 block">{{ new Date(comment.created_at).toDateString() }}</span>
 			        <span class="ml-1 block">No.{{ comment.id }}</span>
 			       </p>
              <span class="block mt-1 mb-2" v-if="comment.image">File: <a target="_blank" :href="comment.image.fullres">{{ comment.image.fullres }}</a></span>
