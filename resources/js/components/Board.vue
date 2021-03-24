@@ -46,7 +46,7 @@
                 that.board = response.data
             });
 
-            this.axios.get('/api/entries/' + this.board_href).then((response) => {
+            this.axios.get('/api/board/' + this.board_href + '/entries').then((response) => {
                 that.entries = response.data
             });
         }

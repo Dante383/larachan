@@ -7,6 +7,8 @@ use App\Models\Board;
 use App\Models\Entry;
 use App\Models\Comment;
 
+use App\Http\Controllers\BoardController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,21 +21,9 @@ use App\Models\Comment;
 */
 
 Route::prefix('api')->group(function(){
-	Route::get('/boards', function() {
-		return Board::where('listed', true)->get();
-	});
-
-	Route::get('/board/{board_href}', function ($board_href) {
-		return Board::where('href', $board_href)->first();
-	});
-
-	Route::get('/entries/{board_href}', function($board_href) {
-		$board = Board::where('href', $board_href)->first();
-
-		$entries = Entry::where('board_id', $board->id)->orderByDesc('updated_at')->get();
-		
-		return $entries;
-	});
+	Route::get('/boards', [BoardController::class, 'getBoards']);
+	Route::get('/board/{board_href}', [BoardController::class, 'getBoard']);
+	Route::get('/board/{board_href}/entries', [BoardController::class, 'getBoardEntries']);
 
 	Route::get('/entry/{entry_id}', function ($entry_id) {
 		$entry = Entry::where('id', $entry_id)->first();
