@@ -53,7 +53,7 @@
     }
 </script>
 
-<style>
+<style scoped>
 .slide-enter-active {
    -moz-transition-duration: 0.3s;
    -webkit-transition-duration: 0.3s;

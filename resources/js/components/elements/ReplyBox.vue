@@ -74,7 +74,7 @@
   }
 </script>
 
-<style>
+<style scoped>
 .quill-editor {
   height: 65%;
 }

@@ -20,6 +20,9 @@
 	        			<p class="text-black leading-none" v-if="((this.entry.comments.length-2 > 0) && !commentsExpanded)">{{ this.entry.comments.length-2 }} replies omitted.</p>
 	        		</div>
 	        		<div class="text-sm ml-2">
+	        			<a @click="deleteBoxVisible = true" class="text-blue-500 cursor-pointer">Delete</a>
+	      			</div>
+	        		<div class="text-sm ml-2">
 	        			<a @click="toggleComments" class="text-blue-500 cursor-pointer">{{ commentsExpanded ? 'Hide' : 'Expand' }}</a>
 	      			</div>
 	      			<div class="text-sm ml-2">
@@ -68,7 +71,8 @@
 				},
 				'comments': [],
 				'commentsExpanded': false,
-				'replyBoxVisible': false
+				'replyBoxVisible': false,
+				'deleteBoxVisible': false
 			}
 		},
 		methods: {
