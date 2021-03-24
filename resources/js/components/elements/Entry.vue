@@ -40,7 +40,7 @@
 			>
   				<Comment v-for="comment in comments" v-bind:key="comment.id" :comment_id="comment.id"/>
   			</transition-group>
-  			<ReplyBox v-if="replyBoxVisible" :entry_id="this.entry_id"/>
+  			<ReplyBox v-if="replyBoxVisible" :entry_id="this.entry_id" v-on:reply-posted="replyPosted"/>
   		</div>
 	</div>
 </template>
@@ -81,6 +81,9 @@
 					this.comments = this.entry.comments;
 				}
 				this.commentsExpanded = !this.commentsExpanded;
+			},
+			replyPosted (reply) {
+				this.comments.push(reply);
 			}
 		},
 		mounted() {

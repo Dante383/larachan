@@ -47,6 +47,8 @@
     },
     methods: {
       sendReply () {
+        var that = this; 
+
         let data = {
           'body': this.content,
           'entry_id': this.entry_id
@@ -54,6 +56,7 @@
 
         this.axios.post('/api/comment', data=data).then((response) => {
           console.log(response);
+          that.$emit('reply-posted', response.data);
         });
       }
     },

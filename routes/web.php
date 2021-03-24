@@ -59,6 +59,8 @@ Route::prefix('api')->group(function(){
 		$comment->body = $request->input('body');
 		$comment->entry_id = $request->input('entry_id');
 		$comment->save();
+
+		return $comment;
 	});
 });
 
