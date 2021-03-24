@@ -41,7 +41,12 @@ Route::prefix('api')->group(function(){
 	});
 
 	Route::post('/entry', function(Request $request){
-
+		$entry = new Entry;
+		$entry->title = $request->input('title');
+		$entry->body = $request->input('body');
+		$entry->edit_key = $request->input('edit_key');
+		$entry->board_id = $request->input('board_id');
+		$entry->save();
 	});
 
 

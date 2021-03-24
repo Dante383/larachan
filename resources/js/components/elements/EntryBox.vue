@@ -15,7 +15,7 @@
         <div class="m-4">
           <div>
             <label for="title" class="float-left mr-2">Title</label>
-            <input type="text" ref="title" id="title" class="border-grey-400 focus:ring-indigo-500 focus:border-indigo-500 block w-45 pl-7 pr-12 sm:text-sm border border-grey-light rounded-md float-left" placeholder="Topic">
+            <input type="text" v-model="title" id="title" class="border-grey-400 focus:ring-indigo-500 focus:border-indigo-500 block w-45 pl-7 pr-12 sm:text-sm border border-grey-light rounded-md float-left" placeholder="Topic">
           </div>
           <div>
             <label for="editkey" class="float-left mr-2 ml-2">Edit key</label>
@@ -29,7 +29,7 @@
             :options="editorOptions"
             />
     		</div>
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="sendReply">Send</button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="sendEntry">Send</button>
   		</div>
 	</div>
 </template>
@@ -58,13 +58,15 @@
       }
     },
     methods: {
-      sendReply () {
+      sendEntry () {
         let data = {
+          'title': this.title,
           'body': this.content,
-          'entry_id': this.entry_id
+          'board_id': this.board_id,
+          'edit_key': this.editKey
         }
 
-        this.axios.post('/api/comment', data=data).then((response) => {
+        this.axios.post('/api/entry', data=data).then((response) => {
           console.log(response);
         });
       }
