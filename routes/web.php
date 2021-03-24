@@ -3,11 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
-use App\Models\Board;
 use App\Models\Entry;
 use App\Models\Comment;
 
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\EntryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,25 +25,8 @@ Route::prefix('api')->group(function(){
 	Route::get('/board/{board_href}', [BoardController::class, 'getBoard']);
 	Route::get('/board/{board_href}/entries', [BoardController::class, 'getBoardEntries']);
 
-	Route::get('/entry/{entry_id}', function ($entry_id) {
-		$entry = Entry::where('id', $entry_id)->first();
-
-		$returnData = $entry;
-		$returnData['comments'] = $entry['comments'];
-
-		return $returnData;
-	});
-
-	Route::post('/entry', function(Request $request){
-		$entry = new Entry;
-		$entry->title = $request->input('title');
-		$entry->body = $request->input('body');
-		$entry->edit_key = $request->input('edit_key');
-		$entry->board_id = $request->input('board_id');
-		$entry->save();
-
-		return $entry;
-	});
+	Route::get('/entry/{entry_id}', [EntryController::class, 'getEntry']);
+	Route::post('/entry', [EntryController::class, 'postEntry']);
 
 
 	Route::get('/comment/{comment_id}', function ($comment_id) {
