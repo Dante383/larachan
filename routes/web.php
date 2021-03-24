@@ -3,11 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
-use App\Models\Entry;
-use App\Models\Comment;
-
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\EntryController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,23 +26,8 @@ Route::prefix('api')->group(function(){
 	Route::get('/entry/{entry_id}', [EntryController::class, 'getEntry']);
 	Route::post('/entry', [EntryController::class, 'postEntry']);
 
-
-	Route::get('/comment/{comment_id}', function ($comment_id) {
-		return Comment::where('id', $comment_id)->first();
-	});
-
-	Route::post('/comment', function(Request $request){
-		$comment = new Comment;
-		$comment->body = $request->input('body');
-		$comment->entry_id = $request->input('entry_id');
-		$comment->save();
-
-		$entry = $comment->entry;
-		$entry->touch();
-		$entry->save();
-
-		return $comment;
-	});
+	Route::get('/comment/{comment_id}', [CommentController::class, 'getComment']);
+	Route::post('/comment', [CommentController::class, 'postComment']);
 });
 
 Route::get('/{any}', function(){
