@@ -51,6 +51,8 @@ Route::prefix('api')->group(function(){
 		$entry->edit_key = $request->input('edit_key');
 		$entry->board_id = $request->input('board_id');
 		$entry->save();
+
+		return $entry;
 	});
 
 

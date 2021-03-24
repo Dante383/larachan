@@ -59,6 +59,8 @@
     },
     methods: {
       sendEntry () {
+        var that = this;
+
         let data = {
           'title': this.title,
           'body': this.content,
@@ -67,7 +69,10 @@
         }
 
         this.axios.post('/api/entry', data=data).then((response) => {
-          console.log(response);
+          that.$emit('entry-posted', response.data);
+          that.title = '';
+          that.content = '';
+          that.edit_key = '';
         });
       }
     },
