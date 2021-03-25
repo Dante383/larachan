@@ -13,7 +13,7 @@
                 </transition>
             </div>
         </div>
-        <div class="container mx-auto">
+        <div>
             <Entry v-for="entry in entries" v-bind:key="entry.id" :entry_id="entry.id" v-on:entry-deleted="entryDeleted"/>
         </div>
     </div>
@@ -40,7 +40,7 @@
           },
           entryDeleted (entry_id) {
             var that = this;
-            
+
             this.entries.forEach(function(entry, i){
               if (entry.id == entry_id) {
                 that.entries.splice(i, 1);

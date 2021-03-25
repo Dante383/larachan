@@ -46,16 +46,12 @@
 		          	leave-to-class="transform opacity-0 scale-95"
 		          	>
 			          <div class="origin-top-right absolute right-0 mt-10 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="boards-menu" v-if="isOpen">
-			            <router-link v-for="board in boards" v-bind:key="board.href" :to="board.href" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">/{{ board.href }}/ {{ board.name }}</router-link>
+			            <router-link v-for="board in boards" v-bind:key="board.href" :to="'/' + board.href" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">/{{ board.href }}/ {{ board.name }}</router-link>
 			          </div>
 			      </transition>
 		        </div>
 	          </div>
 	        </div>
-	      </div>
-	      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-
-	        
 	      </div>
 	    </div>
 	  </div>

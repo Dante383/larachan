@@ -6,6 +6,7 @@ Vue.use(VueRouter)
 import App from './components/App'
 import Home from './components/Home'
 import Board from './components/Board'
+import Entry from './components/elements/Entry'
 
 import './../css/app.css'
 
@@ -27,7 +28,13 @@ const router = new VueRouter({
         name: 'board',
         component: Board,
         props: true
-    },    
+    },
+    {
+        path: '/entry/:entry_id',
+        name: 'entry',
+        component: Entry,
+        props: true
+    }    
 	],
 })
     

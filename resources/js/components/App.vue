@@ -1,7 +1,7 @@
 <template>
     <div class="mb-10">
         <Navbar/>
-        <main>
+        <main class="container mx-auto">
             <router-view :key="$route.path"></router-view>
         </main>
     </div>

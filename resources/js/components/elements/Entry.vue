@@ -9,7 +9,7 @@
 	      			<p class="text-sm text-grey-dark flex items-center">
 				    	<span class="text-green-700 font-semibold">Anonymous</span>
 				        <span class="ml-1">{{ new Date(entry.created_at).toDateString() }}</span>
-				        <span class="ml-1">No.{{ entry.id }}</span>
+				        <router-link :to="'entry/' + entry.id"><span class="ml-1">No.{{ entry.id }}</span></router-link>
 				    </p>
 				    <span class="block mt-1 mb-2" v-if="entry.image">File: <a target="_blank" :href="entry.image.fullres">{{ entry.image.fullres }}</a></span>
 	      			<div class="text-black font-bold text-xl mb-2" v-if="entry.title">{{ entry.title }}</div>
