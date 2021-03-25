@@ -11,18 +11,18 @@
           </label>
         </div>
        </div>
-  		<div class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal">
-        <div class="m-4">
-          <div>
+  		<div class="h-64 border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal">
+        <div class="m-2">
+          <div class="float-left">
             <label for="title" class="float-left mr-2">Title</label>
-            <input type="text" v-model="title" id="title" class="border-grey-400 focus:ring-indigo-500 focus:border-indigo-500 block w-45 pl-7 pr-12 sm:text-sm border border-grey-light rounded-md float-left" placeholder="Topic">
+            <input type="text" v-model="title" id="title" class="w-96 border-grey-400 focus:ring-indigo-500 focus:border-indigo-500 block w-45 pl-7 sm:text-sm border border-grey-light rounded-md float-left" placeholder="Title">
           </div>
-          <div>
-            <label for="editkey" class="float-left mr-2 ml-2">Edit key</label>
-            <input type="text" id="editkey" v-model="editKey" class="focus:ring-indigo-500 focus:border-indigo-500 block w-45 pl-7 pr-12 sm:text-sm border border-grey-light rounded-md float-left" placeholder="Edit key">
+          <div class="float-left">
+            <label for="editkey" class="float-left mr-2">Edit key</label>
+            <input type="text" id="editkey" v-model="editKey" class="w-96 focus:ring-indigo-500 focus:border-indigo-500 block w-45 pl-7 sm:text-sm border border-grey-light rounded-md float-left" placeholder="Edit key">
           </div>
         </div>
-    		<div class="mb-8 h-100">
+    		<div class="">
             <quill-editor
             ref="entryEditor"
             v-model="content"
