@@ -9,7 +9,7 @@
             </div>
             <div class="flex justify-center m-6">
                 <transition name="slide">
-                    <EntryBox v-if="entryBoxVisible" :board_id="this.board.id" v-on:entry-posted="entryPosted"/>
+                    <EntryBox v-if="entryBoxVisible" :board_id="this.board.id" v-bind:key="this.board.id" v-on:entry-posted="entryPosted"/>
                 </transition>
             </div>
         </div>

@@ -26,7 +26,7 @@
 	        			<a @click="toggleComments" class="text-blue-500 cursor-pointer">{{ commentsExpanded ? 'Hide' : 'Expand' }}</a>
 	      			</div>
 	      			<div class="text-sm ml-2">
-	        			<a @click="replyBoxVisible = true" class="text-blue-500 cursor-pointer">Reply</a>
+	        			<a @click="replyBoxVisible = !replyBoxVisible" class="text-blue-500 cursor-pointer">Reply</a>
 	      			</div>
 	    		</div>
 	    		<div class="block">
@@ -48,7 +48,7 @@
 			>
   				<Comment v-for="comment in comments" v-bind:key="comment.id" :comment_id="comment.id"/>
   			</transition-group>
-  			<ReplyBox v-if="replyBoxVisible" :entry_id="this.entry_id" v-on:reply-posted="replyPosted"/>
+  			<ReplyBox v-if="replyBoxVisible" :entry_id="this.entry_id" v-bind:key="'reply' + this.entry_id" v-on:reply-posted="replyPosted"/>
   		</div>
 	</div>
 </template>

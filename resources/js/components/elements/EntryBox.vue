@@ -79,7 +79,7 @@
     mounted() {
       Dropzone.autoDiscover = false;
 
-      let uploadDropzone = new Dropzone("#dropzone", {
+      this.uploadDropzone = new Dropzone("#dropzone", {
         url: '/action',
         previewTemplate: `
         <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -91,6 +91,11 @@
       var charactersLength = characters.length;
       for ( var i = 0; i < 6; i++ ) {
         this.editKey += characters.charAt(Math.floor(Math.random() * charactersLength));
+      }
+    },
+    beforeDestroyed () {
+      if (this.uploadDropzone) {
+        this.uploadDropzone.destroy();
       }
     }
   }
