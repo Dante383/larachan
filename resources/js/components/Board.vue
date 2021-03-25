@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="container mx-auto">
-            <Entry v-for="entry in entries" v-bind:key="entry.id" :entry_id="entry.id"/>
+            <Entry v-for="entry in entries" v-bind:key="entry.id" :entry_id="entry.id" v-on:entry-deleted="entryDeleted"/>
         </div>
     </div>
 </template>
@@ -37,6 +37,15 @@
           entryPosted (entry) {
             this.entries.unshift(entry);
             this.entryBoxVisible = false; 
+          },
+          entryDeleted (entry_id) {
+            var that = this;
+            
+            this.entries.forEach(function(entry, i){
+              if (entry.id == entry_id) {
+                that.entries.splice(i, 1);
+              }
+            });
           }
         },
         mounted() {

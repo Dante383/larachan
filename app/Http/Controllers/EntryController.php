@@ -9,7 +9,7 @@ use App\Models\Entry;
 class EntryController extends Controller
 {
     public function getEntry ($entry_id) {
-    	$entry = Entry::with('comments')->where('id', $entry_id)->first();
+    	$entry = Entry::with('comments')->where('id', $entry_id)->firstOrFail();
 
 		return $entry;
     }
@@ -23,5 +23,16 @@ class EntryController extends Controller
 		$entry->save();
 
 		return $entry;
+    }
+
+    public function deleteEntry ($entry_id, Request $request) {
+    	$entry = Entry::where('id', $entry_id)->firstOrFail();
+
+    	if ($entry->edit_key === $request->input('edit_key')) {
+    		$entry->delete();
+    		return;
+    	}
+
+    	return abort(401);
     }
 }

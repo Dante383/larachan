@@ -24,6 +24,7 @@ Route::prefix('api')->group(function(){
 	Route::get('/board/{board_href}/entries', [BoardController::class, 'getBoardEntries']);
 
 	Route::get('/entry/{entry_id}', [EntryController::class, 'getEntry']);
+	Route::delete('/entry/{entry_id}', [EntryController::class, 'deleteEntry']);
 	Route::post('/entry', [EntryController::class, 'postEntry']);
 
 	Route::get('/comment/{comment_id}', [CommentController::class, 'getComment']);

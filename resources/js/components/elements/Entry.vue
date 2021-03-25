@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="mt-2">
 		<div class="w-full lg:flex">
 	  		<a target="_blank" :href="entry.image.fullres" v-if="entry.image"><img class="h-64 lg:max-w-64 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" 
 	  		:src="entry.image.thumbnail"/></a>
@@ -20,7 +20,7 @@
 	        			<p class="text-black leading-none" v-if="((this.entry.comments.length-2 > 0) && !commentsExpanded)">{{ this.entry.comments.length-2 }} replies omitted.</p>
 	        		</div>
 	        		<div class="text-sm ml-2">
-	        			<a @click="deleteBoxVisible = true" class="text-blue-500 cursor-pointer">Delete</a>
+	        			<a @click="deleteBoxVisible = !deleteBoxVisible" class="text-blue-500 cursor-pointer">Delete</a>
 	      			</div>
 	        		<div class="text-sm ml-2">
 	        			<a @click="toggleComments" class="text-blue-500 cursor-pointer">{{ commentsExpanded ? 'Hide' : 'Expand' }}</a>
@@ -29,6 +29,11 @@
 	        			<a @click="replyBoxVisible = true" class="text-blue-500 cursor-pointer">Reply</a>
 	      			</div>
 	    		</div>
+	    		<div class="block">
+	    			<transition name="slide">
+	      				<DeleteBox v-if="deleteBoxVisible" :entry_id="entry_id" v-on:entry-deleted="$emit('entry-deleted', entry_id)"/>
+	      			</transition>
+	      		</div>
 	  		</div>
 		</div>
 		<div class="ml-16">
@@ -51,10 +56,11 @@
 <script>
 	import Comment from './Comment.vue'
 	import ReplyBox from './ReplyBox.vue'
+	import DeleteBox from './DeleteBox.vue'
 	
 	export default {
 		name: 'Entry',
-		components: {Comment, ReplyBox},
+		components: {Comment, ReplyBox, DeleteBox},
 		props: ['entry_id'],
 		data: function() {
 			return {
@@ -100,3 +106,37 @@
 		}
 	}
 </script>
+
+<style scoped>
+	.slide-enter-active {
+   -moz-transition-duration: 0.2s;
+   -webkit-transition-duration: 0.2s;
+   -o-transition-duration: 0.2s;
+   transition-duration: 0.2s;
+   -moz-transition-timing-function: ease-in;
+   -webkit-transition-timing-function: ease-in;
+   -o-transition-timing-function: ease-in;
+   transition-timing-function: ease-in;
+}
+
+.slide-leave-active {
+   -moz-transition-duration: 0.2s;
+   -webkit-transition-duration: 0.2s;
+   -o-transition-duration: 0.2s;
+   transition-duration: 0.2s;
+   -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+   -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+   -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.slide-enter-to, .slide-leave {
+   max-height: 100px;
+   overflow: hidden;
+}
+
+.slide-enter, .slide-leave-to {
+   overflow: hidden;
+   max-height: 0;
+}
+</style>
