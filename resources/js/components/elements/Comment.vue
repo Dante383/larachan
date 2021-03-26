@@ -38,7 +38,6 @@
 
       this.axios.get('/api/comment/' + this.comment_id).then((response) => {
         that.comment = response.data;
-        console.log(that.comment.image_fullres);
       });
     }
   }

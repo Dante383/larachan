@@ -17,8 +17,8 @@ class CommentController extends Controller
     public function postComment (Request $request) {
     	$request->validate([
     		'file' => 'image|mimes:jpeg,png,jpg,gif|max:5120',
-    		'title' => 'max:255',
-    		'body' => 'required'
+    		'body' => 'required',
+    		'entry_id' => 'required'
     	]);
 
     	$comment = new Comment;

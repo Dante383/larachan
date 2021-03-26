@@ -78,6 +78,7 @@
 
         this.axios(config).then((response) => {
           that.$emit('reply-posted', response.data);
+          that.body = '';
         });
       },
       fileChanged (event) {

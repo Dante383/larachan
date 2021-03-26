@@ -61,14 +61,39 @@
       sendEntry () {
         var that = this;
 
-        let data = {
-          'title': this.title,
-          'body': this.content,
-          'board_id': this.board_id,
-          'edit_key': this.editKey
+        if (this.file){
+          let formData = new FormData();
+          formData.append('file', this.file.files[0]);
+          formData.append('title', this.title)
+          formData.append('body', this.content);
+          formData.append('board_id', this.board_id);
+          formData.append('edit_key', this.editKey)
+
+          var config = {
+            data: formData,
+            method: 'post',
+            url: '/api/entry',
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }
+        }
+        else {
+          var data = {
+            'title': this.title,
+            'body': this.content,
+            'board_id': this.board_id,
+            'edit_key': this.editKey
+          }
+
+          var config = {
+            data: data,
+            method: 'post',
+            url: '/api/entry'
+          }
         }
 
-        this.axios.post('/api/entry', data=data).then((response) => {
+        this.axios(config).then((response) => {
           that.$emit('entry-posted', response.data);
           that.title = '';
           that.content = '';
@@ -84,6 +109,13 @@
           this.$refs.file.value = null;
           this.file = '';
         }
+      }
+    },
+    mounted() {
+      var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      var charactersLength = characters.length;
+      for ( var i = 0; i < 6; i++ ) {
+        this.editKey += characters.charAt(Math.floor(Math.random() * charactersLength));
       }
     }
   }

@@ -1,8 +1,8 @@
 <template>
 	<div class="mt-2">
 		<div class="w-full lg:flex">
-	  		<a target="_blank" :href="entry.image.fullres" v-if="entry.image"><img class="h-64 lg:max-w-64 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" 
-	  		:src="entry.image.thumbnail"/></a>
+	  		<a target="_blank" :href="entry.image_fullres" v-if="entry.image_fullres"><img class="h-64 lg:max-w-64 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" 
+	  		:src="entry.image_thumbnail"/></a>
 	  	
 	  		<div class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
 	    		<div class="mb-8">
@@ -11,7 +11,7 @@
 				        <span class="ml-1">{{ new Date(entry.created_at).toDateString() }}</span>
 				        <router-link :to="'entry/' + entry.id"><span class="ml-1">No.{{ entry.id }}</span></router-link>
 				    </p>
-				    <span class="block mt-1 mb-2" v-if="entry.image">File: <a target="_blank" :href="entry.image.fullres">{{ entry.image.fullres }}</a></span>
+				    <span class="block mt-1 mb-2" v-if="entry.image_fullres">File: <a target="_blank" :href="entry.image_fullres">{{ entry.image_fullres.split('\\').pop().split('/').pop() }}</a></span>
 	      			<div class="text-black font-bold text-xl mb-2" v-if="entry.title">{{ entry.title }}</div>
 	      			<p class="text-grey-darker text-base">{{ entry.body }}</p>
 	    		</div>
@@ -69,10 +69,8 @@
 					'created_at': '',
 					'title': '',
 					'body': '',
-					'image': {
-						"thumbnail": '',
-						"fullres": ''
-					},
+					'thumbnail': '',
+					'fullres': '',
 					'comments': []
 				},
 				'comments': [],
