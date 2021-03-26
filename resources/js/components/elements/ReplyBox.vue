@@ -54,8 +54,29 @@
           'entry_id': this.entry_id
         }
 
-        this.axios.post('/api/comment', data=data).then((response) => {
-          console.log(response);
+        if (this.file){
+          let formData = new FormData();
+          formData.append('file', this.file.files[0]);
+          formData.append('body', this.content);
+          formData.append('entry_id', this.entry_id);
+
+          var config = {
+            data: formData,
+            method: 'post',
+            url: '/api/comment',
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }
+        } else {
+          var config = {
+            method: 'post',
+            url: '/api/comment',
+            data: data
+          }
+        }
+
+        this.axios(config).then((response) => {
           that.$emit('reply-posted', response.data);
         });
       },
