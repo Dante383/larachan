@@ -1,7 +1,7 @@
 <template>
 	<div class="w-full lg:flex display-none mt-2">
-  		<a target="_blank" :href="comment.image.fullres" v-if="comment.image"><img class="h-64 lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" 
-        :src="comment.image.thumbnail"/></a>
+  		<a target="_blank" :href="comment.image_fullres" v-if="comment.image_fullres"><img class="h-64 lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" 
+        :src="comment.image_thumbnail"/></a>
   		<div class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
     		<div class="mb-8">
       			<p class="text-sm text-grey-dark flex items-center">
@@ -9,7 +9,7 @@
 			        <span class="ml-1 block">{{ new Date(comment.created_at).toDateString() }}</span>
 			        <span class="ml-1 block">No.{{ comment.id }}</span>
 			       </p>
-             <span class="block mt-1 mb-2" v-if="comment.image">File: <a target="_blank" :href="comment.image.fullres">{{ comment.image.fullres }}</a></span>
+             <span class="block mt-1 mb-2" v-if="comment.image_fullres">File: <a target="_blank" :href="comment.image_fullres">{{ comment.image_fullres.split('\\').pop().split('/').pop() }}</a></span>
       			<p class="text-grey-darker text-base">
             {{ comment.body }}
             </p>
@@ -27,10 +27,8 @@
           "id": "",
           "created_at": "",
           "body": "",
-          "image": {
-            "thumbnail": "",
-            "fullres": ""
-          },
+          "image_thumbnail": "",
+          "image_fullres": "",
           "entry_id": ""
         }
       }
@@ -40,6 +38,7 @@
 
       this.axios.get('/api/comment/' + this.comment_id).then((response) => {
         that.comment = response.data;
+        console.log(that.comment.image_fullres);
       });
     }
   }
